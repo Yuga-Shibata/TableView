@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var sectionTitles = ["title1", "title2"]
     
 
+    @IBOutlet weak var inputButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +26,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        let ViewWidth = self.view.frame.size.width
+        let viewHeight = self.view.frame.size.height
+        let buttonSize = ViewWidth / 4
+        inputButton.frame = CGRect(x: ViewWidth - buttonSize, y: viewHeight - buttonSize, width: buttonSize, height: buttonSize)
     }
     
     @IBAction func input(_ sender: Any) {
@@ -77,6 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 行を選択したときに呼び出される
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択されました")
+        tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "next", sender: nil)
     }
     
