@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    var hierarchicalData = [[String]]()
     var hierarchicalData = [["test1", "test2"], ["test3"]]
     var sectionTitles = ["title1", "title2"]
+    var text = String()
     
 
     @IBOutlet weak var inputButton: UIButton!
@@ -33,8 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func input(_ sender: Any) {
-        let next = storyboard?.instantiateViewController(identifier: "input") as! InputViewController
-        self.present(next, animated: true, completion: nil)
+      
     }
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,14 +81,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // 行を選択したときに呼び出される
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(text)
         print("\(indexPath.row)が選択されました")
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "next", sender: nil)
     }
     
-    // 遷移先に値を渡す
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
+
 }
 
