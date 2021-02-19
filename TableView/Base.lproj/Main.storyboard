@@ -59,9 +59,9 @@
         <!--Input View Controller-->
         <scene sceneID="DPd-cd-40Z">
             <objects>
-                <viewController storyboardIdentifier="input" modalPresentationStyle="fullScreen" id="6lZ-3t-6SA" customClass="InputViewController" customModule="TableView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="input" id="6lZ-3t-6SA" customClass="InputViewController" customModule="TableView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8fP-j5-5CH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIF-l4-TJW">

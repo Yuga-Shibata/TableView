@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol SendInputViewText {
+    func sendText(text:String)
+}
+
 class InputViewController: UIViewController, UITextViewDelegate{
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var textView: UITextView!
-        
+    var delegate:SendInputViewText?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,7 +25,11 @@ class InputViewController: UIViewController, UITextViewDelegate{
     }
     
     @IBAction func save(_ sender: Any) {
-        // textViewの文字をviewControllerへと渡す　
+        // textViewの文字をviewControllerへと渡す
+        if let text = textView.text {
+            delegate?.sendText(text: text)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: Any) {

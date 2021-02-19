@@ -7,12 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SendInputViewText {
     
 //    var hierarchicalData = [[String]]()
     var hierarchicalData = [["test1", "test2"], ["test3"]]
     var sectionTitles = ["title1", "title2"]
-    var text = String()
     
 
     @IBOutlet weak var inputButton: UIButton!
@@ -34,15 +33,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func input(_ sender: Any) {
-      
+        
     }
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
+        if hierarchicalData.count == 0 {
+            hierarchicalData.append([String]())
+        }
         return hierarchicalData.count
     }
     
     // セクションのタイトル
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if self.sectionTitles.isEmpty {
+            return nil
+        }
         return sectionTitles[section]
     }
 
@@ -79,13 +84,69 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cellSize
     }
     
+    // tableVIewをスワイプしたときのアクションを登録する
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 削除処理
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            //削除処理を記述
+            print("Deleteがタップされた")
+            self.hierarchicalData[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            print(indexPath)
+            while true {
+                var foundNill = false
+                if self.hierarchicalData.count == 0 {
+                    break
+                }
+                // hierarchicalDataの空配列を削除する
+                for i in 0...self.hierarchicalData.count - 1 {
+                    print("i:\(i)")
+                    if self.hierarchicalData[i].isEmpty {
+                        // 空配列を削除する。途中で削除すると添字が変わるので、for文を最初からやり直す
+                        self.hierarchicalData.remove(at: i)
+                        self.sectionTitles.remove(at: i)
+                        print(self.hierarchicalData)
+                        foundNill = true
+                        break
+                    }
+                }
+                if foundNill == false {
+                    break
+                }
+            }
+            // rowを読み込み直す
+            tableView.reloadData()
+            // 実行結果に関わらず記述
+            completionHandler(true)
+        }
+        // 定義したアクションをセット
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
     // 行を選択したときに呼び出される
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(text)
         print("\(indexPath.row)が選択されました")
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "next", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "input" {
+            let inputView = segue.destination as! InputViewController
+            inputView.delegate = self
+        }
+    }
+    
+    func sendText(text: String) {
+        // 配列が空になっていた場合
+//        if hierarchicalData.count == 0 {
+//            hierarchicalData.append([String]())
+//        }
+        hierarchicalData[0].append(text)
+        tableView.reloadSections([0], with: .none)
+        print(hierarchicalData)
+    }
+
     
 
 }
