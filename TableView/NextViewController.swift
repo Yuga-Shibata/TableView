@@ -33,7 +33,6 @@ class NextViewController: UIViewController {
         if let editedText = textView.text {
             delegate?.sendEditedText(text: editedText)
         }
-        self.navigationController?.viewControllers.removeLast()
         self.navigationController?.popViewController(animated: true)
     }
     

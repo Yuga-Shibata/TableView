@@ -132,6 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             inputView.delegate = self
         } else if segue.identifier == "next" {
             let nextView = segue.destination as! NextViewController
+            nextView.delegate = self
             nextView.sendedData = sender as? sendDatas;()
         }
         
@@ -144,10 +145,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func sendEditedText(text: String) {
-        hierarchicalData[0][currentIndexPath] = text
-        let path:IndexPath = [0, currentIndexPath]
-        tableView.reloadRows(at: [path], with: .fade)
         print("呼ばれたよ")
+        hierarchicalData[0][currentIndexPath] = text
+        tableView.reloadData()
     }
 
     // textViewの編集が開始されたときに呼び出される
