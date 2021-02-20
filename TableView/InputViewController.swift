@@ -54,6 +54,4 @@ class InputViewController: UIViewController, UITextViewDelegate{
         textView.font = UIFont.italicSystemFont(ofSize: 30)
         textView.text = "本文を入力……"
     }
-    
-
 }

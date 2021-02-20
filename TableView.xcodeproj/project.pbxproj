@@ -16,6 +16,7 @@
 		82689B0125D941A40071FC6B /* TableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82689B0025D941A40071FC6B /* TableViewTests.swift */; };
 		82689B0C25D941A40071FC6B /* TableViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82689B0B25D941A40071FC6B /* TableViewUITests.swift */; };
 		82689B1D25D943F90071FC6B /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82689B1C25D943F90071FC6B /* NextViewController.swift */; };
+		8296CCD225E0EEEC0028F541 /* class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296CCD125E0EEEC0028F541 /* class.swift */; };
 		82A9462F25DB4F2F00EE0246 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9462E25DB4F2F00EE0246 /* InputViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		82689B0B25D941A40071FC6B /* TableViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewUITests.swift; sourceTree = "<group>"; };
 		82689B0D25D941A40071FC6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82689B1C25D943F90071FC6B /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		8296CCD125E0EEEC0028F541 /* class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = class.swift; sourceTree = "<group>"; };
 		82A9462E25DB4F2F00EE0246 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				82689AF725D941A40071FC6B /* Info.plist */,
 				82689B1C25D943F90071FC6B /* NextViewController.swift */,
 				82A9462E25DB4F2F00EE0246 /* InputViewController.swift */,
+				8296CCD125E0EEEC0028F541 /* class.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8296CCD225E0EEEC0028F541 /* class.swift in Sources */,
 				82689AEE25D941A30071FC6B /* ViewController.swift in Sources */,
 				82A9462F25DB4F2F00EE0246 /* InputViewController.swift in Sources */,
 				82689B1D25D943F90071FC6B /* NextViewController.swift in Sources */,
@@ -454,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.TableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -473,7 +477,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.makoto.TableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

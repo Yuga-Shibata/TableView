@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SendInputViewText {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SendInputViewText, sendNextViewText {
     
 //    var hierarchicalData = [[String]]()
-    var hierarchicalData = [["test1", "test2"], ["test3"]]
-    var sectionTitles = ["title1", "title2"]
-    
+    var hierarchicalData = [["test1", "test2"]]
+    var sectionTitles = ["メモ一覧"]
+    var currentIndexPath = Int()
 
     @IBOutlet weak var inputButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -32,9 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         inputButton.frame = CGRect(x: ViewWidth - buttonSize, y: viewHeight - buttonSize, width: buttonSize, height: buttonSize)
     }
     
-    @IBAction func input(_ sender: Any) {
-        
-    }
     // セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         if hierarchicalData.count == 0 {
@@ -45,10 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // セクションのタイトル
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.sectionTitles.isEmpty {
-            return nil
-        }
-        return sectionTitles[section]
+        return sectionTitles[0]
     }
 
     // 行の数
@@ -60,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel!.text = hierarchicalData[indexPath.section][indexPath.row]
-        cell.imageView?.image = UIImage(named: "bunny")
+        cell.imageView?.image = UIImage(named: "mail")
         return cell
     }
     
@@ -104,7 +98,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if self.hierarchicalData[i].isEmpty {
                         // 空配列を削除する。途中で削除すると添字が変わるので、for文を最初からやり直す
                         self.hierarchicalData.remove(at: i)
-                        self.sectionTitles.remove(at: i)
                         print(self.hierarchicalData)
                         foundNill = true
                         break
@@ -126,28 +119,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 行を選択したときに呼び出される
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択されました")
+        currentIndexPath = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: "next", sender: nil)
+        let text = hierarchicalData[0][indexPath.row]
+        let data = sendDatas(text: text, path: indexPath.row)
+        self.performSegue(withIdentifier: "next", sender: data)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "input" {
             let inputView = segue.destination as! InputViewController
             inputView.delegate = self
+        } else if segue.identifier == "next" {
+            let nextView = segue.destination as! NextViewController
+            nextView.sendedData = sender as? sendDatas;()
         }
+        
     }
     
     func sendText(text: String) {
-        // 配列が空になっていた場合
-//        if hierarchicalData.count == 0 {
-//            hierarchicalData.append([String]())
-//        }
         hierarchicalData[0].append(text)
         tableView.reloadSections([0], with: .none)
         print(hierarchicalData)
     }
-
     
+    func sendEditedText(text: String) {
+        hierarchicalData[0][currentIndexPath] = text
+        let path:IndexPath = [0, currentIndexPath]
+        tableView.reloadRows(at: [path], with: .fade)
+        print("呼ばれたよ")
+    }
+
+    // textViewの編集が開始されたときに呼び出される
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        // darkモードに対応してフォントカラーを変更
+        if traitCollection.userInterfaceStyle == .dark {
+            textView.textColor = UIColor.white
+        } else {
+            textView.textColor = UIColor.black
+        }
+    }
 
 }
 

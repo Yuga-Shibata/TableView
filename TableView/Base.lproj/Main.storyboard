@@ -37,7 +37,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <state key="normal" image="plus"/>
                                 <connections>
-                                    <action selector="input:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pdt-Lu-0Xt"/>
                                     <segue destination="6lZ-3t-6SA" kind="presentation" identifier="input" id="Tha-Iv-wba"/>
                                 </connections>
                             </button>
@@ -45,7 +44,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IQ6-OJ-Lvu"/>
+                    <navigationItem key="navigationItem" id="IQ6-OJ-Lvu">
+                        <barButtonItem key="backBarButtonItem" title="戻る" id="wKk-TL-DvX"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="inputButton" destination="f6B-ED-hsh" id="tS8-cI-vas"/>
                         <outlet property="tableView" destination="gE1-tW-BDo" id="ao2-fv-Auw"/>
@@ -64,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIF-l4-TJW">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIF-l4-TJW">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -110,14 +111,33 @@
                     <view key="view" contentMode="scaleToFill" id="2D2-5K-SFa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="hg" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ5-e9-dfj">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="address-level1"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gk0-iR-OJR"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="7hk-Jo-AtY"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="7hk-Jo-AtY">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="waL-m5-gCe">
+                            <connections>
+                                <action selector="save:" destination="9UR-l3-2LJ" id="l32-SU-QC4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="ZZ5-e9-dfj" id="Jo7-26-9H7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoZ-ap-y02" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1788" y="125"/>
+            <point key="canvasLocation" x="1788" y="124.58770614692655"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DcI-3y-9IR">
